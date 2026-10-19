@@ -661,6 +661,7 @@
           display: none;
         }
         .nav a[href="#projects"],
+        .nav a[href="#writing"],
         .nav a[href="#contact"] {
           display: block;
         }
@@ -929,9 +930,117 @@
         padding-left: 22px;
         border-color: var(--red);
       }
+      .writing-intro {
+        max-width: 720px;
+        margin: -18px 0 36px 225px;
+        color: var(--muted);
+      }
+      .story-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+      .story-card {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        border: 1px solid var(--line);
+        background: color-mix(in srgb, var(--panel) 72%, transparent);
+        transition: border-color 0.2s, transform 0.2s;
+      }
+      .story-card:hover {
+        border-color: var(--red);
+        transform: translateY(-3px);
+      }
+      .story-cover {
+        display: grid;
+        aspect-ratio: 16 / 9;
+        place-items: center;
+        overflow: hidden;
+        border-bottom: 1px solid var(--line);
+        background:
+          linear-gradient(var(--grid) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+          var(--panel);
+        background-size: 18px 18px;
+      }
+      .story-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.25s ease;
+      }
+      .story-card:hover .story-cover img {
+        transform: scale(1.025);
+      }
+      .story-cover-fallback {
+        color: var(--red);
+        font: 500 0.72rem "DM Mono";
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .story-body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 20px;
+      }
+      .story-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px 12px;
+        margin-bottom: 14px;
+        color: var(--red);
+        font: 400 0.68rem "DM Mono";
+        text-transform: uppercase;
+      }
+      .story-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.22rem;
+        line-height: 1.25;
+        letter-spacing: -0.025em;
+      }
+      .story-card p {
+        display: -webkit-box;
+        margin: 0 0 22px;
+        overflow: hidden;
+        color: var(--muted);
+        font-size: 0.92rem;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+      }
+      .story-card .story-link {
+        align-self: flex-start;
+        margin-top: auto;
+        color: var(--ink);
+        font: 500 0.72rem "DM Mono";
+        text-transform: uppercase;
+      }
+      .story-card .story-link:hover {
+        color: var(--red);
+      }
+      .writing-footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 26px;
+      }
+      .writing-status {
+        grid-column: 1 / -1;
+        min-height: 190px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        font: 400 0.75rem "DM Mono";
+        text-align: center;
+        text-transform: uppercase;
+      }
       @media (max-width: 900px) {
         #projects .work-list {
           grid-template-columns: 1fr;
+        }
+        .story-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
       @media (max-width: 800px) {
@@ -941,6 +1050,9 @@
         .work .project-figure {
           grid-column: 2/-1;
         }
+        .writing-intro {
+          margin-left: 0;
+        }
       }
       @media (max-width: 520px) {
         .project-figure {
@@ -948,6 +1060,12 @@
         }
         .work .project-figure {
           grid-column: 1/-1;
+        }
+        .story-grid {
+          grid-template-columns: 1fr;
+        }
+        .writing-footer {
+          justify-content: flex-start;
         }
       }
     </style>
@@ -1399,7 +1517,8 @@
       <a class="brand" href="#about"><i></i>MONISH.MUKHARI</a>
       <nav class="nav" aria-label="Primary navigation">
         <a href="#experience">Experience</a><a href="#projects">Projects</a
-        ><a href="#stack">Stack</a><a href="#contact">Contact</a
+        ><a href="#writing">Writing</a><a href="#stack">Stack</a
+        ><a href="#contact">Contact</a
         ><button class="theme" id="theme" aria-label="Switch to dark mode">
           <span></span>
         </button>
@@ -1710,9 +1829,32 @@
           </article>
         </div>
       </section>
+      <section class="reveal" id="writing">
+        <div class="section-head">
+          <div class="section-id mono">03 / WRITING</div>
+          <h2>Notes on software and systems.</h2>
+        </div>
+        <p class="writing-intro">
+          Ideas, lessons and practical breakdowns from the things I build and
+          study. Published on Inkwell and pulled into this portfolio
+          automatically.
+        </p>
+        <div class="story-grid" id="storyGrid" aria-live="polite">
+          <div class="writing-status">Loading latest writing&hellip;</div>
+        </div>
+        <div class="writing-footer">
+          <a
+            class="btn primary"
+            href="https://blog-two-theta-w7p9gofxfw.vercel.app/blogs"
+            target="_blank"
+            rel="noreferrer"
+            >Explore all stories &nearr;</a
+          >
+        </div>
+      </section>
       <section class="reveal" id="stack">
         <div class="section-head">
-          <div class="section-id mono">03 / TECH STACK</div>
+          <div class="section-id mono">04 / TECH STACK</div>
           <h2>Tools I use to ship.</h2>
         </div>
         <div class="skills">
@@ -1752,7 +1894,7 @@
       </section>
       <section class="reveal">
         <div class="section-head">
-          <div class="section-id mono">04 / PROFILE</div>
+          <div class="section-id mono">05 / PROFILE</div>
           <h2>Foundation and continued learning.</h2>
         </div>
         <div class="split">
@@ -1799,7 +1941,7 @@
       <section class="contact reveal" id="contact">
         <div class="contact-grid">
           <div>
-            <div class="section-id mono">05 / CONTACT</div>
+            <div class="section-id mono">06 / CONTACT</div>
             <h2>Let’s build something useful.</h2>
             <p>
               I’m open to software engineering opportunities and conversations
@@ -1870,6 +2012,93 @@
           } catch (x) {
             location.href = "mailto:monishmukhari@gmail.com";
           }
+        });
+
+      const storyGrid = document.getElementById("storyGrid");
+      const storyApi =
+        "https://backend.manishmukherjee91.workers.dev/api/v1/community/profile/a349c2f8-25d8-4c16-b0aa-01f5b2b2b07c/stories";
+      const storyBase = "https://blog-two-theta-w7p9gofxfw.vercel.app";
+
+      function storyStatus(message) {
+        const status = document.createElement("div");
+        status.className = "writing-status";
+        status.textContent = message;
+        storyGrid.replaceChildren(status);
+      }
+
+      function renderStory(story) {
+        const article = document.createElement("article");
+        article.className = "story-card";
+
+        const cover = document.createElement("div");
+        cover.className = "story-cover";
+        const fallback = () => {
+          const label = document.createElement("span");
+          label.className = "story-cover-fallback";
+          label.textContent = "Inkwell / Writing";
+          cover.replaceChildren(label);
+        };
+        if (story.coverImageUrl) {
+          const image = document.createElement("img");
+          image.src = story.coverImageUrl;
+          image.alt = "Cover image for " + story.title;
+          image.loading = "lazy";
+          image.decoding = "async";
+          image.addEventListener("error", fallback, { once: true });
+          cover.append(image);
+        } else {
+          fallback();
+        }
+
+        const body = document.createElement("div");
+        body.className = "story-body";
+        const meta = document.createElement("div");
+        meta.className = "story-meta";
+        const date = document.createElement("span");
+        date.textContent = new Intl.DateTimeFormat("en", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        }).format(new Date(story.publishedAt));
+        meta.append(date);
+        if (story.tags && story.tags[0]) {
+          const topic = document.createElement("span");
+          topic.textContent = story.tags[0];
+          meta.append(topic);
+        }
+
+        const title = document.createElement("h3");
+        title.textContent = story.title;
+        const excerpt = document.createElement("p");
+        excerpt.textContent =
+          story.excerpt || "A short note on building thoughtful software.";
+        const link = document.createElement("a");
+        link.className = "story-link";
+        link.href = storyBase + "/story/" + encodeURIComponent(story.slug || story.id);
+        link.target = "_blank";
+        link.rel = "noreferrer";
+        link.textContent = "Read story \u2197";
+        link.setAttribute("aria-label", "Read " + story.title + " on Inkwell");
+
+        body.append(meta, title, excerpt, link);
+        article.append(cover, body);
+        return article;
+      }
+
+      fetch(storyApi)
+        .then((response) => {
+          if (!response.ok) throw new Error("Could not load stories");
+          return response.json();
+        })
+        .then(({ stories = [] }) => {
+          if (!stories.length) {
+            storyStatus("New writing is on the way.");
+            return;
+          }
+          storyGrid.replaceChildren(...stories.slice(0, 3).map(renderStory));
+        })
+        .catch(() => {
+          storyStatus("Writing could not be loaded right now. Visit Inkwell to read it.");
         });
     </script>
   </body>
