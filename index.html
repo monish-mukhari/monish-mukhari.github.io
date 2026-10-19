@@ -867,6 +867,73 @@
         grid-column: 2/-1;
         margin: 4px 0 2px;
       }
+      #projects .work-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        align-items: start;
+        border-top: 0;
+      }
+      #projects .featured-work,
+      #projects .work {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        min-width: 0;
+        padding: 22px;
+        border: 1px solid var(--line);
+        background: color-mix(in srgb, var(--panel) 72%, transparent);
+      }
+      #projects .featured-top {
+        display: contents;
+      }
+      #projects .featured-top .work-num,
+      #projects .work > .work-num,
+      #projects .featured-top > div:nth-child(2),
+      #projects .work > div:nth-child(2),
+      #projects .featured-top .work-stack,
+      #projects .work > .work-stack,
+      #projects .system-map,
+      #projects .project-figure,
+      #projects .work .project-figure {
+        grid-column: 1;
+      }
+      #projects .work-num {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      #projects .live-label {
+        display: inline-block;
+        margin-top: 0;
+      }
+      #projects .work-stack {
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+        line-height: 1.6;
+      }
+      #projects .system-map {
+        margin: 0;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+      #projects .system-node {
+        padding: 12px 6px;
+        font-size: 0.59rem;
+      }
+      #projects .project-figure,
+      #projects .work .project-figure {
+        margin: 2px 0 0;
+      }
+      #projects .work:hover {
+        padding-left: 22px;
+        border-color: var(--red);
+      }
+      @media (max-width: 900px) {
+        #projects .work-list {
+          grid-template-columns: 1fr;
+        }
+      }
       @media (max-width: 800px) {
         .project-figure {
           margin-left: 72px;
